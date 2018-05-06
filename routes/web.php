@@ -17,4 +17,4 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('tours', 'ToursController');
+Route::resource('tours', 'ToursController')->middleware('admin');
