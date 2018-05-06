@@ -23,7 +23,7 @@ class ToursController extends Controller
      */
     public function create()
     {
-        //
+        return view('tours.create');
     }
 
     /**
@@ -34,7 +34,7 @@ class ToursController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate();
     }
 
     /**
