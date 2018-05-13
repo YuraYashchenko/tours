@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TourRequest;
+use App\Tour;
 use Illuminate\Http\Request;
 
 class ToursController extends Controller
@@ -13,7 +15,9 @@ class ToursController extends Controller
      */
     public function index()
     {
-        return view('tours.index');
+        $tours = Tour::all();
+
+        return view('tours.index', compact('tours'));
     }
 
     /**
@@ -32,20 +36,22 @@ class ToursController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TourRequest $request)
     {
-        $request->validate();
+        Tour::create($request->all());
+
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Tour $tour
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tour $tour)
     {
-        //
+        return view('tours.show', compact('tour'));
     }
 
     /**
@@ -54,21 +60,22 @@ class ToursController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tour $tour)
     {
-        //
+        return view('tours.edit', compact('tour'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param TourRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TourRequest $request, Tour $tour)
     {
-        //
+        $tour->update($request->all());
+
+        return redirect()->back();
     }
 
     /**
@@ -77,8 +84,10 @@ class ToursController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tour $tour)
     {
-        //
+        $tour->delete();
+
+        return redirect()->back();
     }
 }
