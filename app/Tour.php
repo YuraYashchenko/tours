@@ -19,4 +19,9 @@ class Tour extends Model
 
         return implode(', ', $names);
     }
+
+    public function getImageAttribute($avatar)
+    {
+        return asset($avatar ?: 'images/default.png');
+    }
 }

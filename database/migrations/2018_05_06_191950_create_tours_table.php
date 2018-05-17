@@ -22,7 +22,7 @@ class CreateToursTable extends Migration
             $table->timestamp('price');
             $table->string('region');
             $table->integer('stars');
-            $table->string('path')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

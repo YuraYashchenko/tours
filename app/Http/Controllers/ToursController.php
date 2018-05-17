@@ -41,7 +41,10 @@ class ToursController extends Controller
      */
     public function store(TourRequest $request)
     {
-        $tour = Tour::create($request->except('services'));
+        $tour = Tour::create(array_merge(
+            $request->except('services'),
+            ['image' => $request->file('image')->store('images', 'public')]
+        ));
 
         $tour->services()->sync($request->services);
 
@@ -64,7 +67,7 @@ class ToursController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Tour $tour
      * @return \Illuminate\Http\Response
      */
     public function edit(Tour $tour)

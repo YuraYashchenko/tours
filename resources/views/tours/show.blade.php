@@ -10,13 +10,20 @@
 
                 <div class="card-body">
                     <div class="card-text">
-                        <h5>Description: {{ $tour->description }}</h5>
-                        <h5>Price: {{ $tour->price }}</h5>
-                        <h5>Region: {{ $tour->region }}</h5>
-                        <h5>Stars: {{ $tour->stars }}</h5>
-                        <h5>Services: {{ convertToString($tour->services) }} </h5>
-                        <h5>Start date: {{  $tour->start_date }}</h5>
-                        <h5>End date: {{ $tour->end_date }}</h5>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img src="{{ $tour->image }}" width="320" height="250" class="mr-1">
+                            </div>
+                            <div class="col-md-7">
+                                <h5>Description: {{ $tour->description }}</h5>
+                                <h5>Price: {{ $tour->price }}</h5>
+                                <h5>Region: {{ $tour->region }}</h5>
+                                <h5>Stars: {{ $tour->stars }}</h5>
+                                <h5>Services: {{ convertToString($tour->services) }} </h5>
+                                <h5>Start date: {{  $tour->start_date }}</h5>
+                                <h5>End date: {{ $tour->end_date }}</h5>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

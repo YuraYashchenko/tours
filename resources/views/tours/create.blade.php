@@ -3,7 +3,7 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="{{ route('tours.store') }}" method="POST">
+            <form action="{{ route('tours.store') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <div class="form-group">
@@ -48,6 +48,11 @@
                 <div class="form-group">
                     <label for="end-date">End day of trip:</label>
                     <input type="date" value="{{ date('Y-m-d') }}" name="end_date" id="endd-date" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input name="image" type="file" id="image" class="form-control">
                 </div>
 
                 <button class="btn btn-success btn-block">Save</button>
