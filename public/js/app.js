@@ -13891,7 +13891,7 @@ window.Vue = __webpack_require__(36);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(39));
+Vue.component('services', __webpack_require__(39));
 
 var app = new Vue({
   el: '#app'
@@ -47175,7 +47175,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
+Component.options.__file = "resources\\assets\\js\\components\\Services.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -47184,9 +47184,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7168fb6a", Component.options)
+    hotAPI.createRecord("data-v-0b29d7d5", Component.options)
   } else {
-    hotAPI.reload("data-v-7168fb6a", Component.options)
+    hotAPI.reload("data-v-0b29d7d5", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -47327,10 +47327,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
+    props: ['data'],
+
+    data: function data() {
+        return {
+            name: '',
+            services: this.data
+        };
+    },
+
+
+    methods: {
+        create: function create() {
+            var _this = this;
+
+            var name = this.name;
+
+            axios.post('services', { name: name }).then(function (response) {
+                _this.services.push(response.data);
+                _this.name = '';
+            }).catch(function (error) {
+                return console.log(error);
+            });
+        },
+        destroy: function destroy(service) {
+            var _this2 = this;
+
+            var index = this.services.indexOf(service);
+
+            axios.delete('/services/' + service.id).then(function () {
+                _this2.services.splice(index, 1);
+            }).catch(function (error) {
+                return console.log(error);
+            });
+        }
     }
 });
 
@@ -47342,29 +47385,89 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card card-default" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "service" } }, [_vm._v("Service:")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.name,
+                    expression: "name"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  placeholder: "Enter the name of service",
+                  type: "text",
+                  id: "service"
+                },
+                domProps: { value: _vm.name },
+                on: {
+                  keyup: function($event) {
+                    if (!("button" in $event) && $event.keyCode !== 13) {
+                      return null
+                    }
+                    return _vm.create($event)
+                  },
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.name = $event.target.value
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "list-group" },
+              _vm._l(_vm.services, function(service) {
+                return _c("li", { staticClass: "list-group-item" }, [
+                  _vm._v(
+                    "\n                            " +
+                      _vm._s(service.name) +
+                      "\n                            "
+                  ),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { href: "/services/" + service.id },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.destroy(service)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
+              })
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", [_vm._v("Categories")])
     ])
   }
 ]
@@ -47373,7 +47476,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0b29d7d5", module.exports)
   }
 }
 

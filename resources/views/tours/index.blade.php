@@ -10,12 +10,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-text">
-                            <h5>Description: {{ $tour->description }}</h5>
-                            <h5>Price: {{ $tour->price }}</h5>
-                            <h5>Region: {{ $tour->region }}</h5>
-                            <h5>Stars: {{ $tour->stars }}</h5>
-                            <h5>Start date: {{  $tour->start_date }}</h5>
-                            <h5>End date: {{ $tour->end_date }}</h5>
+                            <h5>{{ $tour->description }}</h5>
                         </div>
                     </div>
                 </div>

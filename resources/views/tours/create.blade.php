@@ -32,6 +32,15 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="service">Chose a Services:</label>
+                    <select multiple name="services[]" id="service" class="custom-select">
+                        @foreach($services as $service)
+                            <option value="{{ $service->id }}">{{ $service->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="start-date">Start day of trip:</label>
                     <input type="date" value="{{ date('Y-m-d') }}" name="start_date" id="start-date" class="form-control">
                 </div>

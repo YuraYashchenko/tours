@@ -14,17 +14,9 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $services = Service::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('services.index', compact('services'));
     }
 
     /**
@@ -35,41 +27,13 @@ class ServicesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            'name' => 'required|max:250'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Service $service)
-    {
-        //
-    }
+        $service = Service::create($request->all());
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Service $service)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Service $service)
-    {
-        //
+        return response($service, 201);
     }
 
     /**
@@ -80,6 +44,8 @@ class ServicesController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+
+        return response('', 200);
     }
 }

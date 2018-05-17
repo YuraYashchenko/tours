@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TourRequest;
+use App\Service;
 use App\Tour;
 use Illuminate\Http\Request;
 
@@ -27,18 +28,22 @@ class ToursController extends Controller
      */
     public function create()
     {
-        return view('tours.create');
+        $services = Service::all();
+
+        return view('tours.create', compact('services'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param TourRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(TourRequest $request)
     {
-        Tour::create($request->all());
+        $tour = Tour::create($request->except('services'));
+
+        $tour->services()->sync($request->services);
 
         return redirect()->route('tours.index');
     }
@@ -51,6 +56,8 @@ class ToursController extends Controller
      */
     public function show(Tour $tour)
     {
+        $tour->load('services');
+
         return view('tours.show', compact('tour'));
     }
 
