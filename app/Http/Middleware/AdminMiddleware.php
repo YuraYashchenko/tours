@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class AdminMiddleware
 {
@@ -17,7 +18,7 @@ class AdminMiddleware
     {
         if (! $request->user()->isAdmin())
         {
-            return redirect()->route('admin.panel');
+            return redirect()->route('user.profile', Auth::user()->id);
         }
 
         return $next($request);

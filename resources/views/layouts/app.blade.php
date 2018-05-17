@@ -34,9 +34,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                            <li><a class="nav-link" href="{{ route('services.index') }}">Services</a></li>
-                            <li><a class="nav-link" href="{{ route('tours.create') }}">Create a tour</a></li>
-                            <li><a class="nav-link" href="{{ route('tours.index') }}">Show all tours</a></li>
+                        @auth
+                            @admin
+                                <li><a class="nav-link" href="{{ route('services.index') }}">Services</a></li>
+                                <li><a class="nav-link" href="{{ route('tours.create') }}">Create a tour</a></li>
+                                <li><a class="nav-link" href="{{ route('tours.index') }}">Show all tours</a></li>
+                            @else
+                                <li><a class="nav-link" href="{{ route('user.profile', Auth::user()->id) }}">Profile</a></li>
+                                <li><a class="nav-link" href="">Order tour</a></li>
+                            @endadmin
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->

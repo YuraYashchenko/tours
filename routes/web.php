@@ -17,5 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/user/profile/{user}', 'UserProfileController')->name('user.profile')->middleware('auth');
+
 Route::resource('tours', 'ToursController')->middleware(['auth', 'admin']);
 Route::resource('services', 'ServicesController')->only(['index', 'store', 'destroy'])->middleware(['auth', 'admin']);
