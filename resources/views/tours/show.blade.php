@@ -3,22 +3,33 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ $tour->name }}</h3>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">{{ $tour->name }}</h3>
                 </div>
 
-                <div class="panel-body">
-                    <h2>Description: {{ $tour->description }}</h2>
-                    <h2>Price: {{ $tour->price }}</h2>
-                    <h2>Region: {{ $tour->region }}</h2>
-                    <h2>Stars: {{ $tour->stars }}</h2>
-                    <h2>Start date: {{  $tour->start_date }}</h2>
-                    <h2>End date: {{ $tour->end_date }}</h2>
+                <div class="card-body">
+                    <div class="card-text">
+                        <h5>Description: {{ $tour->description }}</h5>
+                        <h5>Price: {{ $tour->price }}</h5>
+                        <h5>Region: {{ $tour->region }}</h5>
+                        <h5>Stars: {{ $tour->stars }}</h5>
+                        <h5>Start date: {{  $tour->start_date }}</h5>
+                        <h5>End date: {{ $tour->end_date }}</h5>
+                    </div>
                 </div>
             </div>
-            <a href="{{ route('tours.edit', $tour->id) }}" class="btn btn-block btn-success">Edit</a>
-            <a href="{{ route('tours.destroy', $tour->id) }}" class="btn btn-block btn-danger">Delete</a>
+            <div class="form-group">
+                <a href="{{ route('tours.edit', $tour->id) }}" class="btn btn-block btn-success">Edit</a>
+                <a href="{{ route('tours.destroy', $tour->id) }}" class="btn btn-block btn-danger" onclick="event.preventDefault();document.getElementById('delete-form').submit();">
+                    Delete
+                </a>
+
+                <form id="delete-form" action="{{ route('tours.destroy', $tour->id) }}" method="POST" style="display: none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
+            </div>
         </div>
     </div>
 @endsection

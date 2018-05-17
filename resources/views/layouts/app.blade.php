@@ -34,7 +34,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                            <li><a class="nav-link" href="{{ route('services.index') }}">Create a Service</a></li>
+                            <li><a class="nav-link" href="{{ route('tours.index') }}">Create a Tour</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

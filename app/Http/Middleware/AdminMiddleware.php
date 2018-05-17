@@ -17,7 +17,7 @@ class AdminMiddleware
     {
         if (! $request->user()->isAdmin())
         {
-            return redirect('/');
+            return redirect()->route('admin.panel');
         }
 
         return $next($request);

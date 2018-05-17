@@ -18,3 +18,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('tours', 'ToursController')->middleware(['auth', 'admin']);
+Route::resource('services', 'ServicesController')->middleware(['auth', 'admin']);
