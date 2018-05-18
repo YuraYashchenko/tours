@@ -72,7 +72,9 @@ class ToursController extends Controller
      */
     public function edit(Tour $tour)
     {
-        return view('tours.edit', compact('tour'));
+        $services = Service::all();
+
+        return view('tours.edit', compact('tour', 'services'));
     }
 
     /**
@@ -83,7 +85,12 @@ class ToursController extends Controller
      */
     public function update(TourRequest $request, Tour $tour)
     {
-        $tour->update($request->all());
+        $tour->update(array_merge(
+            $request->except('services'),
+            ['image' => $request->file('image')->store('images', 'public')]
+        ));
+
+        $tour->services()->sync($request->services);
 
         return redirect()->route('tours.index');
     }
