@@ -5,6 +5,7 @@ namespace App\Providers;
 use Blade;
 use Auth;
 use Illuminate\Support\ServiceProvider;
+use Stripe\Stripe;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('admin', function() {
             return Auth::user()->isAdmin();
         });
+
+        Stripe::setApiKey(config('services.stripe.secret'));
     }
 
     /**

@@ -9,6 +9,8 @@ class Tour extends Model
 {
     protected $guarded = [];
 
+    protected $casts = ['price' => 'integer'];
+
     /**
      * Get all services for a tour.
      *

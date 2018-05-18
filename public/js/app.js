@@ -47582,6 +47582,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         setOptions: function setOptions() {
+            var _this = this;
+
             this.stripe = StripeCheckout.configure({
                 key: 'pk_test_ZD1Zu1tAMXqABoD35737DPc6',
                 image: "https://stripe.com/img/documentation/checkout/marketplace.png",
@@ -47589,7 +47591,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 token: function token(_token) {
                     var data = {
                         stripeToken: _token.id,
-                        stripeEmail: _token.email
+                        stripeEmail: _token.email,
+                        tourId: _this.tour.id
                     };
 
                     axios.post('/purchases', data).then(function () {

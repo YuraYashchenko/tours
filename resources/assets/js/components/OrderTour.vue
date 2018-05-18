@@ -51,10 +51,11 @@
                     key: 'pk_test_ZD1Zu1tAMXqABoD35737DPc6',
                     image: "https://stripe.com/img/documentation/checkout/marketplace.png",
                     locale: "auto",
-                    token: function (token) {
+                    token: token => {
                         let data = {
                             stripeToken: token.id,
-                            stripeEmail: token.email
+                            stripeEmail: token.email,
+                            tourId: this.tour.id
                         }
 
                         axios.post('/purchases', data)
