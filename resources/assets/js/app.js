@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('services', require('./components/Services.vue'));
+Vue.component('order-tour', require('./components/OrderTour.vue'));
 
 const app = new Vue({
     el: '#app'

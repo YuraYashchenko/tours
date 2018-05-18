@@ -11,6 +11,8 @@
 |
 */
 
+use Stripe\{Stripe, Charge, Customer};
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,3 +26,20 @@ Route::resource('services', 'ServicesController')->only(['index', 'store', 'dest
 
 Route::get('/user/order/tour', 'OrderToursController@index')->middleware('auth')->name('order.tour');
 Route::get('/user/order/show/{tour}', 'OrderToursController@show')->middleware('auth')->name('order.tour.show');
+
+Route::post('/purchases', function (\Illuminate\Http\Request $request) {
+    Stripe::setApiKey(config('services.stripe.secret'));
+
+    $customer = Customer::create([
+        'email' => $request->stripeEmail,
+        'source' => $request->stripeToken
+    ]);
+
+    Charge::create([
+        'customer' => $customer->id,
+        'amount' => 2500,
+        'currency' => 'uah'
+    ]);
+
+    return 'All done';
+});
