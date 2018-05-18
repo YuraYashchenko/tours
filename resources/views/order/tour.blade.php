@@ -1,4 +1,4 @@
-@extends ('layouts.app')
+@extends('layouts.app')
 
 @section('content')
     <div class="row justify-content-center">
@@ -15,13 +15,14 @@
                     </div>
                 </div>
                 <div class="form-group mt-3">
-                    <a href="{{ route('tours.show', $tour->id) }}" class="btn btn-primary btn-block">View</a>
+                    <a href="{{ route('order.tour.show', $tour->id) }}" class="btn btn-primary btn-block">Show</a>
                 </div>
             @endforeach
 
             <div class="row justify-content-center">
-                {{  $tours->links() }}
+                {{ $tours->links() }}
             </div>
         </div>
     </div>
+
 @endsection

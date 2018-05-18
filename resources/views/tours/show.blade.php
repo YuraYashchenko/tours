@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <a href="{{ route('tours.edit', $tour->id) }}" class="btn btn-block btn-success">Edit</a>
                 <a href="{{ route('tours.destroy', $tour->id) }}" class="btn btn-block btn-danger" onclick="event.preventDefault();document.getElementById('delete-form').submit();">
                     Delete

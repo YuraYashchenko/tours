@@ -21,3 +21,6 @@ Route::get('/user/profile/{user}', 'UserProfileController')->name('user.profile'
 
 Route::resource('tours', 'ToursController')->middleware(['auth', 'admin']);
 Route::resource('services', 'ServicesController')->only(['index', 'store', 'destroy'])->middleware(['auth', 'admin']);
+
+Route::get('/user/order/tour', 'OrderToursController@index')->middleware('auth')->name('order.tour');
+Route::get('/user/order/show/{tour}', 'OrderToursController@show')->middleware('auth')->name('order.tour.show');
