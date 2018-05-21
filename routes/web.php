@@ -27,4 +27,6 @@ Route::resource('services', 'ServicesController')->only(['index', 'store', 'dest
 Route::get('/user/order/tour', 'OrderToursController@index')->middleware('auth')->name('order.tour');
 Route::get('/user/order/show/{tour}', 'OrderToursController@show')->middleware('auth')->name('order.tour.show');
 
+Route::get('/user/tours', 'OrderedToursController')->middleware('auth')->name('user.tours');
+
 Route::post('/purchases', 'PurchasesController@store')->middleware('auth');

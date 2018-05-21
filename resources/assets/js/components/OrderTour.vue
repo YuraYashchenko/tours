@@ -13,7 +13,7 @@
                             </div>
                             <div class="col-md-7">
                                 <h5>Description: {{ tour.description }}</h5>
-                                <h5>Price: {{ tour.price }}</h5>
+                                <h5>Price: {{ tour.price / 100 }}</h5>
                                 <h5>Region: {{ tour.region }}</h5>
                                 <h5>Stars: {{ tour.stars }}</h5>
                                 <!--<h5>Services: {{ convertToString($tour->services) }} </h5>-->
@@ -59,7 +59,7 @@
                         }
 
                         axios.post('/purchases', data)
-                            .then(() => alert('!!!'));
+                            .then(() => window.location.href = '/user/tours');
                     }
                 });
             }

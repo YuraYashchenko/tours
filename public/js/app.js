@@ -47596,7 +47596,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     };
 
                     axios.post('/purchases', data).then(function () {
-                        return alert('!!!');
+                        return window.location.href = '/user/tours';
                     });
                 }
             });
@@ -47637,7 +47637,7 @@ var render = function() {
                   _vm._v("Description: " + _vm._s(_vm.tour.description))
                 ]),
                 _vm._v(" "),
-                _c("h5", [_vm._v("Price: " + _vm._s(_vm.tour.price))]),
+                _c("h5", [_vm._v("Price: " + _vm._s(_vm.tour.price / 100))]),
                 _vm._v(" "),
                 _c("h5", [_vm._v("Region: " + _vm._s(_vm.tour.region))]),
                 _vm._v(" "),

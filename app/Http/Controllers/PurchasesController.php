@@ -2,27 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Tour;
-use Illuminate\Http\Request;
-use Stripe\{Customer, Charge};
+use App\Http\Requests\PurchaseRequest;
+use DB;
 
 class PurchasesController extends Controller
 {
-    public function store(Request $request)
+    public function store(PurchaseRequest $request)
     {
-        $tour = Tour::find($request->id);
+        try {
+            DB::beginTransaction();
 
-        $customer = Customer::create([
-            'email' => $request->stripeEmail,
-            'source' => $request->stripeToken
-        ]);
+            $request->purchase();
 
-        Charge::create([
-            'customer' => $customer->id,
-            'amount' => $tour->price,
-            'currency' => 'uah'
-        ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            \Log::error($e->getMessage());
 
-        return 'All done';
+            return response('Unsuccessful payment', 422);
+        }
+
+        return response('Successful payment.', 200);
     }
 }

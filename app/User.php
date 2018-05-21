@@ -36,4 +36,14 @@ class User extends Authenticatable
     {
         return !! $this->is_admin;
     }
+
+    /**
+     * Get tours which user has ordered.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tours()
+    {
+        return $this->belongsToMany(Tour::class);
+    }
 }

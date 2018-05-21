@@ -42,6 +42,7 @@
                             @else
                                 <li><a class="nav-link" href="{{ route('user.profile', Auth::user()->id) }}">Profile</a></li>
                                 <li><a class="nav-link" href="{{ route('order.tour') }}">Order tour</a></li>
+                                <li><a class="nav-link" href="{{ route('user.tours') }}">My tours</a></li>
                             @endadmin
                         @endauth
                     </ul>

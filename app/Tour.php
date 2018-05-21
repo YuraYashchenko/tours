@@ -53,4 +53,14 @@ class Tour extends Model
     {
         return Carbon::createFromFormat('Y-m-d', $date)->format('M j Y');
     }
+
+    /**
+     * Get users which ordered tour.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function user()
+    {
+        return $this->belongsToMany(Tour::class);
+    }
 }
