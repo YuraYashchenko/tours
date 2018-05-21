@@ -6,7 +6,7 @@
             <h1>Ordered tours:</h1>
             <ul class="list-group">
                 @foreach($tours as $tour)
-                    <li class="list-group-item">{{ $tour->name }}</li>
+                    <li class="list-group-item"><a href="{{ route('order.tour.show', $tour->id) }}">{{ $tour->name }}</a></li>
                 @endforeach
             </ul>
         </div>

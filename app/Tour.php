@@ -40,7 +40,7 @@ class Tour extends Model
      */
     public function getEndDateAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d', $date)->format('M j Y');
+        return Carbon::createFromFormat('Y-m-d', $date)->format('Y-m-d');
     }
 
     /**
@@ -51,7 +51,7 @@ class Tour extends Model
      */
     public function getStartDateAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d', $date)->format('M j Y');
+        return Carbon::createFromFormat('Y-m-d', $date)->format('Y-m-d');
     }
 
     /**

@@ -13,7 +13,7 @@
 
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <input type="text" name="description" id="description" class="form-control">
+                    <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
                 </div>
 
                 <div class="form-group">
