@@ -18,8 +18,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="price">Price:</label>
-                    <input type="text" value="{{ $tour->price }}" name="price" id="price" class="form-control">
+                    <label for="price">Price per day, UAH:</label>
+                    <input type="text" value="{{ $tour->price / 100 }}" name="price" id="price" class="form-control">
                 </div>
 
                 <div class="form-group">

@@ -21,6 +21,11 @@ class Tour extends Model
         return $this->belongsToMany(Service::class);
     }
 
+    public function setPriceAttribute($price)
+    {
+        $this->attributes['price'] = $price * 100;
+    }
+
     /**
      * Mutator for image field.
      *

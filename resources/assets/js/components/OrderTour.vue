@@ -13,7 +13,7 @@
                             </div>
                             <div class="col-md-7">
                                 <h5>Description: {{ tour.description }}</h5>
-                                <h5>Price: {{ tour.price / 100 }}</h5>
+                                <h5>Price per day, UAH: {{ tour.price / 100 }}</h5>
                                 <h5>Region: {{ tour.region }}</h5>
                                 <h5>Stars: {{ tour.stars }}</h5>
                             </div>
@@ -84,6 +84,7 @@
                     key: 'pk_test_ZD1Zu1tAMXqABoD35737DPc6',
                     image: "https://stripe.com/img/documentation/checkout/marketplace.png",
                     locale: "auto",
+                    currency: 'uah',
                     token: token => {
                         let data = {
                             stripeToken: token.id,

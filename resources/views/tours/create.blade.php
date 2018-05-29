@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="price">Price:</label>
+                    <label for="price">Price per day, UAH:</label>
                     <input type="text" name="price" id="price" class="form-control">
                 </div>
 

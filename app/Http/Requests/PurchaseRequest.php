@@ -53,7 +53,7 @@ class PurchaseRequest extends FormRequest
         Charge::create([
             'customer' => $customer->id,
             'amount' => $price,
-            'currency' => 'usd'
+            'currency' => 'uah'
         ]);
 
         Order::create([

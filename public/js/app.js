@@ -47630,6 +47630,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 key: 'pk_test_ZD1Zu1tAMXqABoD35737DPc6',
                 image: "https://stripe.com/img/documentation/checkout/marketplace.png",
                 locale: "auto",
+                currency: 'uah',
                 token: function token(_token) {
                     var data = {
                         stripeToken: _token.id,
@@ -47682,7 +47683,9 @@ var render = function() {
                   _vm._v("Description: " + _vm._s(_vm.tour.description))
                 ]),
                 _vm._v(" "),
-                _c("h5", [_vm._v("Price: " + _vm._s(_vm.tour.price / 100))]),
+                _c("h5", [
+                  _vm._v("Price per day, UAH: " + _vm._s(_vm.tour.price / 100))
+                ]),
                 _vm._v(" "),
                 _c("h5", [_vm._v("Region: " + _vm._s(_vm.tour.region))]),
                 _vm._v(" "),

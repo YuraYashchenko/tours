@@ -12,7 +12,7 @@
                             <h5 class="card-title  ">Start date: {{ $order->start_date }}</h5>
                             <h5 class="card-title">End date: {{ $order->end_date }}</h5>
                             <h5 class="card-title">Number of people: {{ $order->number }}</h5>
-                            <h5 class="card-title">Price: {{ $order->price }}</h5>
+                            <h5 class="card-title">Sum price, UAH: {{ $order->price / 100}}</h5>
 
                             <a href="{{ route('order.tour.show', $order->tour->id) }}" class="btn btn-primary btn-block">Details</a>
                         </div>
