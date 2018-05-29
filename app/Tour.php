@@ -31,4 +31,14 @@ class Tour extends Model
     {
         return asset($avatar ?: 'images/default.png');
     }
+
+    /**
+     * Get order related to the tour.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }

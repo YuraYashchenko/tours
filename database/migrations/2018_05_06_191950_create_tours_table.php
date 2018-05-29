@@ -17,7 +17,7 @@ class CreateToursTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
-            $table->timestamp('price');
+            $table->integer('price');
             $table->string('region');
             $table->integer('stars');
             $table->string('image')->nullable();

@@ -11,8 +11,6 @@
 |
 */
 
-use Stripe\{Stripe, Charge, Customer};
-
 Route::get('/', function () {
     return view('welcome');
 });

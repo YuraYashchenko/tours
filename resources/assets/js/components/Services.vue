@@ -13,7 +13,7 @@
                             <input placeholder="Enter the name of service" type="text" v-on:keyup.13="create" id="service" v-model="name" class="form-control">
                         </div>
                         <ul class="list-group">
-                            <li class="list-group-item" v-for="service in services">
+                            <li class="list-group-item d-flex justify-content-between align-items-center" v-for="service in services">
                                 {{ service.name }}
                                 <a :href="`/services/${service.id}`" class="btn btn-danger" @click.prevent="destroy(service)">Delete</a>
                             </li>

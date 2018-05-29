@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Order;
+use App\PriceCalculation;
 use App\Tour;
 use DB;
 use Auth;
@@ -41,7 +43,8 @@ class PurchaseRequest extends FormRequest
     public function purchase()
     {
         $tour = Tour::findOrFail($this->tourId);
-
+        $price = PriceCalculation::calculate($tour, $this);
+        \Log::info($price);
         $customer = Customer::create([
             'email' => $this->stripeEmail,
             'source' => $this->stripeToken
@@ -49,7 +52,7 @@ class PurchaseRequest extends FormRequest
 
         Charge::create([
             'customer' => $customer->id,
-            'amount' => $tour->price,
+            'amount' => $price,
             'currency' => 'usd'
         ]);
 
@@ -57,6 +60,7 @@ class PurchaseRequest extends FormRequest
             'tour_id' => $this->tourId,
             'user_id' => Auth::user()->id,
             'number' => $this->number,
+            'price' => $price,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
         ]);

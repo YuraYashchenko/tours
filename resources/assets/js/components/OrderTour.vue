@@ -45,14 +45,16 @@
 </template>
 
 <script>
+    import moment from 'moment';
+
     export default {
         props: ['tour'],
 
         data() {
             return {
-                'endDate': '',
-                'startDate': '',
-                'number': 0
+                endDate: moment().format('YYYY-MM-DD'),
+                startDate: moment().format('YYYY-MM-DD'),
+                number: 0
             };
         },
 
@@ -63,8 +65,18 @@
                 this.stripe.open({
                     name: this.tour.name,
                     description: 'Buy a tour',
-                    amount: this.tour.price
+                    amount: this.calculatePrice()
                 });
+            },
+
+            calculatePrice() {
+                let diffInSeconds =  Date.parse(this.endDate) - Date.parse(this.startDate);
+
+                if (diffInSeconds < 0) {
+                    throw new Error('Incorect Date.');
+                }
+
+                return moment.duration(diffInSeconds).days() * this.tour.price * Number.parseInt(this.number);
             },
 
             setOptions() {

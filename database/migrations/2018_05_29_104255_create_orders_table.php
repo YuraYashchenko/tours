@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('tour_id')->references('id')->on('tours');
 
             $table->integer('number');
+            $table->integer('price');
             $table->timestamp('end_date');
             $table->timestamp('start_date');
             $table->timestamps();
