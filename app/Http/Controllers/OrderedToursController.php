@@ -9,8 +9,8 @@ class OrderedToursController extends Controller
 {
     public function __invoke()
     {
-        $tours = Auth::user()->tours;
+        $orders = Auth::user()->orders;
 
-        return view('user.tours', compact('tours'));
+        return view('user.tours', compact('orders'));
     }
 }

@@ -34,6 +34,7 @@ class PurchaseRequest extends FormRequest
             'stripeToken' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
+            'number' => 'required|integer'
         ];
     }
 
@@ -52,6 +53,12 @@ class PurchaseRequest extends FormRequest
             'currency' => 'usd'
         ]);
 
-        Auth::user()->tours()->sync($tour);
+        Order::create([
+            'tour_id' => $this->tourId,
+            'user_id' => Auth::user()->id,
+            'number' => $this->number,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+        ]);
     }
 }

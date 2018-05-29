@@ -24,21 +24,21 @@
 
             <div class="form-group mt-3">
                 <label for="start-date">Start date of a trip: </label>
-                <input class="form-control" type="date" id="start-date" v-model="startDate">
+                <input class="form-control" type="date" id="start-date" v-model="startDate"/>
             </div>
 
             <div class="form-group mt-3">
                 <label for="end-date">End date of a trip: </label>
-                <input class="form-control" type="date" id="end-date" v-model="endDate">
+                <input class="form-control" type="date" id="end-date" v-model="endDate"/>
             </div>
 
             <div class="form-group mt-3">
                 <label for="end-date">Numbers of people: </label>
-                <input class="form-control" type="text" v-model="numbers">
+                <input class="form-control" type="text" v-model="number"/>
             </div>
 
             <div class="form-group mt-3">
-                    <button class="btn btn-block btn-success" @click.prevent="buy">Order</button>
+                <button class="btn btn-block btn-success" @click.prevent="buy">Order</button>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
             return {
                 'endDate': '',
                 'startDate': '',
-                'numbers': 0
+                'number': 0
             };
         },
 
@@ -79,7 +79,7 @@
                             tourId: this.tour.id,
                             end_date: this.endDate,
                             start_date: this.startDate,
-                            numbers: this.numbers
+                            number: this.number
                         }
 
                         axios.post('/purchases', data)

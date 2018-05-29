@@ -38,12 +38,12 @@ class User extends Authenticatable
     }
 
     /**
-     * Get tours which user has ordered.
+     * Get all orders for the user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function tours()
+    public function orders()
     {
-        return $this->belongsToMany(Tour::class);
+        return $this->hasMany(Order::class);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTourUserTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,18 @@ class CreateTourUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('tour_user', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tour_id')->unsigned()->index();
-            $table->foreign('tour_id')->references('id')->on('tours')->onDelete('cascade');
 
             $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
 
+            $table->integer('tour_id')->unsigned()->index();
+            $table->foreign('tour_id')->references('id')->on('tours');
+
+            $table->integer('number');
+            $table->timestamp('end_date');
+            $table->timestamp('start_date');
             $table->timestamps();
         });
     }
@@ -32,6 +36,6 @@ class CreateTourUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tour_user');
+        Schema::dropIfExists('orders');
     }
 }

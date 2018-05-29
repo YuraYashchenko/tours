@@ -47588,7 +47588,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             'endDate': '',
             'startDate': '',
-            'numbers': 0
+            'number': 0
         };
     },
 
@@ -47617,7 +47617,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         tourId: _this.tour.id,
                         end_date: _this.endDate,
                         start_date: _this.startDate,
-                        numbers: _this.numbers
+                        number: _this.number
                     };
 
                     axios.post('/purchases', data).then(function () {
@@ -47739,19 +47739,19 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.numbers,
-              expression: "numbers"
+              value: _vm.number,
+              expression: "number"
             }
           ],
           staticClass: "form-control",
           attrs: { type: "text" },
-          domProps: { value: _vm.numbers },
+          domProps: { value: _vm.number },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.numbers = $event.target.value
+              _vm.number = $event.target.value
             }
           }
         })
