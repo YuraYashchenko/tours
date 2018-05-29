@@ -29,8 +29,6 @@ class TourRequest extends FormRequest
             'price' => 'required|numeric',
             'region' => 'required|max:255',
             'stars' => 'required|digits_between:1,5',
-            'start_date' => 'date',
-            'end_date' => 'date',
             'services' => 'required',
             'image' => 'required'
         ];

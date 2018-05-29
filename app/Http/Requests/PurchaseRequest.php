@@ -31,7 +31,9 @@ class PurchaseRequest extends FormRequest
         return [
             'tourId' => 'required',
             'stripeEmail' => 'required',
-            'stripeToken' => 'required'
+            'stripeToken' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
         ];
     }
 
@@ -49,7 +51,6 @@ class PurchaseRequest extends FormRequest
             'amount' => $tour->price,
             'currency' => 'usd'
         ]);
-
 
         Auth::user()->tours()->sync($tour);
     }

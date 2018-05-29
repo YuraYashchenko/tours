@@ -16,14 +16,27 @@
                                 <h5>Price: {{ tour.price / 100 }}</h5>
                                 <h5>Region: {{ tour.region }}</h5>
                                 <h5>Stars: {{ tour.stars }}</h5>
-                                <!--<h5>Services: {{ convertToString($tour->services) }} </h5>-->
-                                <h5>Start date: {{  tour.start_date }}</h5>
-                                <h5>End date: {{ tour.end_date }}</h5>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="form-group mt-3">
+                <label for="start-date">Start date of a trip: </label>
+                <input class="form-control" type="date" id="start-date" v-model="startDate">
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="end-date">End date of a trip: </label>
+                <input class="form-control" type="date" id="end-date" v-model="endDate">
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="end-date">Numbers of people: </label>
+                <input class="form-control" type="text" v-model="numbers">
+            </div>
+
             <div class="form-group mt-3">
                     <button class="btn btn-block btn-success" @click.prevent="buy">Order</button>
             </div>
@@ -34,6 +47,14 @@
 <script>
     export default {
         props: ['tour'],
+
+        data() {
+            return {
+                'endDate': '',
+                'startDate': '',
+                'numbers': 0
+            };
+        },
 
         methods: {
             buy() {
@@ -55,7 +76,10 @@
                         let data = {
                             stripeToken: token.id,
                             stripeEmail: token.email,
-                            tourId: this.tour.id
+                            tourId: this.tour.id,
+                            end_date: this.endDate,
+                            start_date: this.startDate,
+                            numbers: this.numbers
                         }
 
                         axios.post('/purchases', data)

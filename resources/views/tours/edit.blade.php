@@ -42,16 +42,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="start-date">Start day of trip:</label>
-                    <input type="date" value="{{ $tour->start_date }}" name="start_date" id="start-date" class="form-control">
-                </div>
-
-                <div class="form-group">
-                    <label for="end-date">End day of trip:</label>
-                    <input type="date" value="{{ $tour->end_date }}" name="end_date" id="endd-date" class="form-control">
-                </div>
-
-                <div class="form-group">
                     <label for="image">Image:</label>
                     <input name="image" type="file" id="image" class="form-control">
                 </div>

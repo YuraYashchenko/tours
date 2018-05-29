@@ -33,28 +33,6 @@ class Tour extends Model
     }
 
     /**
-     * Mutator for end_date field.
-     *
-     * @param $date
-     * @return string
-     */
-    public function getEndDateAttribute($date)
-    {
-        return Carbon::createFromFormat('Y-m-d', $date)->format('Y-m-d');
-    }
-
-    /**
-     * Mutator for start_date field.
-     *
-     * @param $date
-     * @return string
-     */
-    public function getStartDateAttribute($date)
-    {
-        return Carbon::createFromFormat('Y-m-d', $date)->format('Y-m-d');
-    }
-
-    /**
      * Get users which ordered tour.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

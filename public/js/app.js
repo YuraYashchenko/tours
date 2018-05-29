@@ -47567,9 +47567,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['tour'],
+
+    data: function data() {
+        return {
+            'endDate': '',
+            'startDate': '',
+            'numbers': 0
+        };
+    },
+
 
     methods: {
         buy: function buy() {
@@ -47592,7 +47614,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     var data = {
                         stripeToken: _token.id,
                         stripeEmail: _token.email,
-                        tourId: _this.tour.id
+                        tourId: _this.tour.id,
+                        end_date: _this.endDate,
+                        start_date: _this.startDate,
+                        numbers: _this.numbers
                     };
 
                     axios.post('/purchases', data).then(function () {
@@ -47641,17 +47666,95 @@ var render = function() {
                 _vm._v(" "),
                 _c("h5", [_vm._v("Region: " + _vm._s(_vm.tour.region))]),
                 _vm._v(" "),
-                _c("h5", [_vm._v("Stars: " + _vm._s(_vm.tour.stars))]),
-                _vm._v(" "),
-                _c("h5", [
-                  _vm._v("Start date: " + _vm._s(_vm.tour.start_date))
-                ]),
-                _vm._v(" "),
-                _c("h5", [_vm._v("End date: " + _vm._s(_vm.tour.end_date))])
+                _c("h5", [_vm._v("Stars: " + _vm._s(_vm.tour.stars))])
               ])
             ])
           ])
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group mt-3" }, [
+        _c("label", { attrs: { for: "start-date" } }, [
+          _vm._v("Start date of a trip: ")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.startDate,
+              expression: "startDate"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "date", id: "start-date" },
+          domProps: { value: _vm.startDate },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.startDate = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group mt-3" }, [
+        _c("label", { attrs: { for: "end-date" } }, [
+          _vm._v("End date of a trip: ")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.endDate,
+              expression: "endDate"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "date", id: "end-date" },
+          domProps: { value: _vm.endDate },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.endDate = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group mt-3" }, [
+        _c("label", { attrs: { for: "end-date" } }, [
+          _vm._v("Numbers of people: ")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.numbers,
+              expression: "numbers"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text" },
+          domProps: { value: _vm.numbers },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.numbers = $event.target.value
+            }
+          }
+        })
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group mt-3" }, [

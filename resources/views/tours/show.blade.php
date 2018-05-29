@@ -20,8 +20,6 @@
                                 <h5>Region: {{ $tour->region }}</h5>
                                 <h5>Stars: {{ $tour->stars }}</h5>
                                 <h5>Services: {{ convertToString($tour->services) }} </h5>
-                                <h5>Start date: {{  $tour->start_date }}</h5>
-                                <h5>End date: {{ $tour->end_date }}</h5>
                             </div>
                         </div>
                     </div>
