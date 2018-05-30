@@ -73,7 +73,8 @@
                 let diffInSeconds =  Date.parse(this.endDate) - Date.parse(this.startDate);
 
                 if (diffInSeconds < 0) {
-                    throw new Error('Incorect Date.');
+                    alert('Incorrect date');
+                    throw new Error('Incorrect Date.');
                 }
 
                 return moment.duration(diffInSeconds).days() * this.tour.price * Number.parseInt(this.number);

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -28,5 +29,27 @@ class Order extends Model
     public function tour()
     {
         return $this->belongsTo(Tour::class);
+    }
+
+    /**
+     * End date mutator.
+     *
+     * @param $date
+     * @return string
+     */
+    public function getEndDateAttribute($date)
+    {
+        return Carbon::parse($date)->format('d M Y');
+    }
+
+    /**
+     * Start date mutator.
+     *
+     * @param $date
+     * @return string
+     */
+    public function getStartDateAttribute($date)
+    {
+        return Carbon::parse($date)->format('d M Y');
     }
 }
