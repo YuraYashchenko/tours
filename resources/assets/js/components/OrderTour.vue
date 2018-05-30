@@ -48,7 +48,7 @@
     import moment from 'moment';
 
     export default {
-        props: ['tour'],
+        props: ['tour', 'stripeKey'],
 
         data() {
             return {
@@ -82,7 +82,7 @@
 
             setOptions() {
                 this.stripe = StripeCheckout.configure({
-                    key: 'pk_test_ZD1Zu1tAMXqABoD35737DPc6',
+                    key: this.stripeKey,
                     image: "https://stripe.com/img/documentation/checkout/marketplace.png",
                     locale: "auto",
                     currency: 'uah',

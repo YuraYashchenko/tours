@@ -63951,7 +63951,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['tour'],
+    props: ['tour', 'stripeKey'],
 
     data: function data() {
         return {
@@ -63986,7 +63986,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.stripe = StripeCheckout.configure({
-                key: 'pk_test_ZD1Zu1tAMXqABoD35737DPc6',
+                key: this.stripeKey,
                 image: "https://stripe.com/img/documentation/checkout/marketplace.png",
                 locale: "auto",
                 currency: 'uah',
