@@ -3,21 +3,19 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-2">
-            <form action="{{ route('sort.tours') }}" method="POST">
-                @csrf
-                <div class="form-check d-flex flex-column">
-                    @foreach($services as $service)
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="{{ $service->id }}" value="1" {{ request()->old($service->id) == 1 ? 'checked' : ''}}>
-                            {{ $service->name }}
-                        </label>
-                    @endforeach
+            <form action="{{ route('order.tour') }}" method="GET">
+                <div class="form-group">
+                    <select name="services[]" class="form-control" multiple id="services">
+                        @foreach($services as $service)
+                            <option value="{{ $service->id }}" {{ in_array($service->id, old('services') ?? []) ? 'selected' : '' }}>{{ $service->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group mt-3">
                     <button class="btn btn-primary btn-block">Filter</button>
                 </div>
-                <div class="form-group mt-1">
-                    <a href="{{ route('order.tour') }}" class="btn btn-primary btn-block">Reset</a>
+                <div class="form-group">
+                    <a href="{{ route('order.tour') }}" class="btn btn-danger btn-block">Reset</a>
                 </div>
             </form>
         </div>

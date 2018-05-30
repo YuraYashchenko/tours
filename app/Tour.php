@@ -46,4 +46,18 @@ class Tour extends Model
     {
         return $this->hasOne(Order::class);
     }
+
+    /**
+     * Filter tours be service name.
+     *
+     * @param $query
+     * @param QueryFilters|array $filters
+     * @return mixed
+     */
+    public function scopeFilterByServices($query, array $filters)
+    {
+        return $query->whereHas('services', function ($query) use ($filters) {
+            return $filters ? $query->whereIn('services.id', $filters) : $query;
+        });
+    }
 }
