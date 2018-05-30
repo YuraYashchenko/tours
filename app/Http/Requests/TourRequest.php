@@ -30,7 +30,7 @@ class TourRequest extends FormRequest
             'region' => 'required|max:255',
             'stars' => 'required|digits_between:1,5',
             'services' => 'required',
-            'image' => 'required'
+            'image' => 'sometimes|image'
         ];
     }
 }

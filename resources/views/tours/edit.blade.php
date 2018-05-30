@@ -36,7 +36,7 @@
                     <label for="service">Chose a Services:</label>
                     <select multiple name="services[]" id="service" class="custom-select">
                         @foreach($services as $service)
-                            <option value="{{ $service->id }}">{{ $service->name }}</option>
+                            <option value="{{ $service->id }}" {{ in_array($service->id, $tour->services->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $service->name }}</option>
                         @endforeach
                     </select>
                 </div>

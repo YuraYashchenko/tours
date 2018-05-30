@@ -41,11 +41,14 @@ class ToursController extends Controller
      */
     public function store(TourRequest $request)
     {
-        $tour = Tour::create(array_merge(
-            $request->except('services'),
-            ['image' => $request->file('image')->store('images', 'public')]
-        ));
+        $data = $request->except(['services', 'image']);
 
+        if ($request->has('image'))
+        {
+            $data +=  ['image' => $request->file('image')->store('images', 'public')];
+        }
+
+        $tour = Tour::create($data);
         $tour->services()->sync($request->services);
 
         return redirect()->route('tours.index');
@@ -80,16 +83,20 @@ class ToursController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param TourRequest|Request $request
+     * @param TourRequest $request
+     * @param Tour $tour
      * @return \Illuminate\Http\Response
      */
     public function update(TourRequest $request, Tour $tour)
     {
-        $tour->update(array_merge(
-            $request->except('services'),
-            ['image' => $request->file('image')->store('images', 'public')]
-        ));
+        $data = $request->except(['services', 'image']);
 
+        if ($request->has('image'))
+        {
+            $data +=  ['image' => $request->file('image')->store('images', 'public')];
+        }
+
+        $tour->update($data);
         $tour->services()->sync($request->services);
 
         return redirect()->route('tours.index');
