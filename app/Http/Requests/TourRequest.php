@@ -30,7 +30,33 @@ class TourRequest extends FormRequest
             'region' => 'required|max:255',
             'stars' => 'required|digits_between:1,5',
             'services' => 'required',
-            'image' => 'sometimes|image'
+            'image' => 'sometimes|image',
+            'standardFoodPrice' => 'required|numeric',
+            'dietaryFoodPrice' => 'required|numeric',
+            'buffetFoodPrice' =>  'required|numeric',
+            'standardRoomPrice' => 'required|numeric',
+            'luxRoomPrice' => 'required|numeric',
+            'economyRoomPrice' => 'required|numeric'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function transformPrices() : array
+    {
+        $nameTransformer = [
+            'standardFoodPrice' => 'Standard',
+            'dietaryFoodPrice' => 'Dietary',
+            'buffetFoodPrice' => 'Buffet',
+            'standardRoomPrice' => 'Standard',
+            'luxRoomPrice' => 'Lux',
+            'economyRoomPrice' => 'Economy'
+        ];
+
+        return [
+            'food_prices' => transformPricesArray($this->only(['standardFoodPrice', 'dietaryFoodPrice', 'buffetFoodPrice']), $nameTransformer),
+            'room_prices' => transformPricesArray($this->only(['standardRoomPrice', 'luxRoomPrice', 'economyRoomPrice']), $nameTransformer)
         ];
     }
 }

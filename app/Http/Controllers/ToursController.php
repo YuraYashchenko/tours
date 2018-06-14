@@ -41,7 +41,7 @@ class ToursController extends Controller
      */
     public function store(TourRequest $request)
     {
-        $data = $request->except(['services', 'image']);
+        $data = $request->only(['name', 'description', 'price', 'region', 'stars']) + $request->transformPrices();
 
         if ($request->has('image'))
         {
@@ -89,7 +89,7 @@ class ToursController extends Controller
      */
     public function update(TourRequest $request, Tour $tour)
     {
-        $data = $request->except(['services', 'image']);
+        $data = $request->only(['name', 'description', 'price', 'region', 'stars']) + $request->transformPrices();
 
         if ($request->has('image'))
         {

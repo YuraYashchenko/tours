@@ -41,6 +41,36 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="standard-food-price">Price for Standard food, UAH:</label>
+                    <input class="form-control" type="text" name="standardFoodPrice">
+                </div>
+
+                <div class="form-group">
+                    <label for="dietary-food-price">Price for Dietary food, UAH:</label>
+                    <input class="form-control" type="text" name="dietaryFoodPrice">
+                </div>
+
+                <div class="form-group">
+                    <label for="buffet-food-price">Price for Buffet food, UAH:</label>
+                    <input class="form-control" type="text" name="buffetFoodPrice">
+                </div>
+
+                <div class="form-group">
+                    <label for="economy-room-price">Price for Economy room, UAH:</label>
+                    <input class="form-control" type="text" name="economyRoomPrice">
+                </div>
+
+                <div class="form-group">
+                    <label for="standard-room-price">Price for Standard room, UAH:</label>
+                    <input class="form-control" type="text" name="standardRoomPrice">
+                </div>
+
+                <div class="form-group">
+                    <label for="lux-room-price">Price for Lux room, UAH:</label>
+                    <input class="form-control" type="text" name="luxRoomPrice">
+                </div>
+
+                <div class="form-group">
                     <label for="image">Image:</label>
                     <input name="image" type="file" id="image" class="form-control">
                 </div>
