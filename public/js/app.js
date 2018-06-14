@@ -63947,6 +63947,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -63955,9 +63969,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            endDate: __WEBPACK_IMPORTED_MODULE_0_moment___default()().format('YYYY-MM-DD'),
+            endDate: __WEBPACK_IMPORTED_MODULE_0_moment___default()().add('days', 1).format('YYYY-MM-DD'),
             startDate: __WEBPACK_IMPORTED_MODULE_0_moment___default()().format('YYYY-MM-DD'),
-            number: 0
+            number: 1,
+            foodType: 1,
+            roomType: 1
         };
     },
 
@@ -63979,8 +63995,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 alert('Incorrect date');
                 throw new Error('Incorrect Date.');
             }
+            console.log(__WEBPACK_IMPORTED_MODULE_0_moment___default.a.duration(diffInSeconds).days() * Number.parseInt(this.number) * (this.tour.price + this.getFoodPrice(this.foodType) + this.getRoomPrice(this.roomType)));
+            return __WEBPACK_IMPORTED_MODULE_0_moment___default.a.duration(diffInSeconds).days() * Number.parseInt(this.number) * (this.tour.price + this.getFoodPrice(this.foodType) + this.getRoomPrice(this.roomType));
+        },
+        getFoodPrice: function getFoodPrice(id) {
+            var food = this.findById(id, this.tour.food_prices);
 
-            return __WEBPACK_IMPORTED_MODULE_0_moment___default.a.duration(diffInSeconds).days() * this.tour.price * Number.parseInt(this.number);
+            return food.price;
+        },
+        getRoomPrice: function getRoomPrice(id) {
+            var room = this.findById(id, this.tour.room_prices);
+
+            return room.price;
+        },
+        findById: function findById(id, items) {
+            for (var key in items) {
+                if (items[key].id == id) return items[key];
+            }
         },
         setOptions: function setOptions() {
             var _this = this;
@@ -63997,7 +64028,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         tourId: _this.tour.id,
                         end_date: _this.endDate,
                         start_date: _this.startDate,
-                        number: _this.number
+                        number: _this.number,
+                        foodId: _this.foodType,
+                        roomId: _this.roomId
                     };
 
                     axios.post('/purchases', data).then(function () {
@@ -64405,6 +64438,96 @@ var render = function() {
             }
           }
         })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group mt-3" }, [
+        _c("label", { attrs: { for: "end-date" } }, [
+          _vm._v("Choose food type: ")
+        ]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.foodType,
+                expression: "foodType"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "food_type", id: "food-type" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.foodType = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          _vm._l(_vm.tour.food_prices, function(food) {
+            return _c("option", {
+              domProps: {
+                value: food.id,
+                textContent: _vm._s(food.name + "/" + food.price / 100 + "UAH")
+              }
+            })
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group mt-3" }, [
+        _c("label", { attrs: { for: "end-date" } }, [
+          _vm._v("Choose food type: ")
+        ]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.roomType,
+                expression: "roomType"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "food_type", id: "room-type" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.roomType = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          _vm._l(_vm.tour.room_prices, function(room) {
+            return _c("option", {
+              domProps: {
+                value: room.id,
+                textContent: _vm._s(room.name + "/" + room.price / 100 + "UAH")
+              }
+            })
+          })
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group mt-3" }, [
