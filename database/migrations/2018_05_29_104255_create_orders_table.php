@@ -26,6 +26,8 @@ class CreateOrdersTable extends Migration
             $table->integer('price');
             $table->timestamp('end_date');
             $table->timestamp('start_date');
+            $table->string('food_type');
+            $table->string('room_type');
             $table->timestamps();
         });
     }

@@ -36,7 +36,9 @@ class PurchaseRequest extends FormRequest
             'stripeToken' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
-            'number' => 'required|integer'
+            'number' => 'required|integer',
+            'roomType' => 'required',
+            'foodType' => 'required'
         ];
     }
 
@@ -44,7 +46,7 @@ class PurchaseRequest extends FormRequest
     {
         $tour = Tour::findOrFail($this->tourId);
         $price = PriceCalculation::calculate($tour, $this);
-        \Log::info($price);
+
         $customer = Customer::create([
             'email' => $this->stripeEmail,
             'source' => $this->stripeToken
@@ -63,6 +65,8 @@ class PurchaseRequest extends FormRequest
             'price' => $price,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
+            'food_type' => $tour->food_prices[$this->foodType]['name'],
+            'room_type' => $tour->room_prices[$this->roomType]['name'],
         ]);
     }
 }

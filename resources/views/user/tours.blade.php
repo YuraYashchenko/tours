@@ -13,8 +13,8 @@
                             <h5 class="card-title">End date: {{ $order->end_date }}</h5>
                             <h5 class="card-title">Number of people: {{ $order->number }}</h5>
                             <h5 class="card-title">Sum price, UAH: {{ $order->price / 100}}</h5>
-
-                            <a href="{{ route('order.tour.show', $order->tour->id) }}" class="btn btn-primary btn-block">Details</a>
+                            <h5 class="card-title">Room Type: {{ $order->room_type}}</h5>
+                            <h5 class="card-title">Food Type: {{ $order->food_type}}</h5>
                         </div>
                     </div>
                 @empty

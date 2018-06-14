@@ -4,7 +4,7 @@
             <div class="col-md-8">
                 <div class="card card-default">
                     <div class="card-header">
-                        <h3>Categories</h3>
+                        <h3>Services</h3>
                     </div>
 
                     <div class="card-body">

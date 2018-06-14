@@ -13,6 +13,6 @@ class PriceCalculation
     {
         $duration = Carbon::parse($request->end_date)->diffInDays($request->start_date);
 
-        return $duration * $tour->price * $request->number;
+        return $duration * $request->number * ($tour->price + $tour->food_prices[$request->foodType]['price'] + $tour->room_prices[$request->roomType]['price']);
     }
 }

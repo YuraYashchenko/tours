@@ -63833,7 +63833,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", [_vm._v("Categories")])
+      _c("h3", [_vm._v("Services")])
     ])
   }
 ]
@@ -63969,11 +63969,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            endDate: __WEBPACK_IMPORTED_MODULE_0_moment___default()().add('days', 1).format('YYYY-MM-DD'),
+            endDate: __WEBPACK_IMPORTED_MODULE_0_moment___default()().add(1, 'days').format('YYYY-MM-DD'),
             startDate: __WEBPACK_IMPORTED_MODULE_0_moment___default()().format('YYYY-MM-DD'),
             number: 1,
-            foodType: 1,
-            roomType: 1
+            foodType: 'standardFoodPrice',
+            roomType: 'standardRoomPrice'
         };
     },
 
@@ -63995,23 +63995,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 alert('Incorrect date');
                 throw new Error('Incorrect Date.');
             }
-            console.log(__WEBPACK_IMPORTED_MODULE_0_moment___default.a.duration(diffInSeconds).days() * Number.parseInt(this.number) * (this.tour.price + this.getFoodPrice(this.foodType) + this.getRoomPrice(this.roomType)));
+
             return __WEBPACK_IMPORTED_MODULE_0_moment___default.a.duration(diffInSeconds).days() * Number.parseInt(this.number) * (this.tour.price + this.getFoodPrice(this.foodType) + this.getRoomPrice(this.roomType));
         },
-        getFoodPrice: function getFoodPrice(id) {
-            var food = this.findById(id, this.tour.food_prices);
+        getFoodPrice: function getFoodPrice() {
+            var food = this.tour.food_prices[this.foodType];
 
             return food.price;
         },
-        getRoomPrice: function getRoomPrice(id) {
-            var room = this.findById(id, this.tour.room_prices);
+        getRoomPrice: function getRoomPrice() {
+            var room = this.tour.room_prices[this.roomType];
 
             return room.price;
-        },
-        findById: function findById(id, items) {
-            for (var key in items) {
-                if (items[key].id == id) return items[key];
-            }
         },
         setOptions: function setOptions() {
             var _this = this;
@@ -64029,8 +64024,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         end_date: _this.endDate,
                         start_date: _this.startDate,
                         number: _this.number,
-                        foodId: _this.foodType,
-                        roomId: _this.roomId
+                        foodType: _this.foodType,
+                        roomType: _this.roomType
                     };
 
                     axios.post('/purchases', data).then(function () {
@@ -64474,10 +64469,10 @@ var render = function() {
               }
             }
           },
-          _vm._l(_vm.tour.food_prices, function(food) {
+          _vm._l(_vm.tour.food_prices, function(food, index) {
             return _c("option", {
               domProps: {
-                value: food.id,
+                value: index,
                 textContent: _vm._s(food.name + "/" + food.price / 100 + "UAH")
               }
             })
@@ -64519,10 +64514,10 @@ var render = function() {
               }
             }
           },
-          _vm._l(_vm.tour.room_prices, function(room) {
+          _vm._l(_vm.tour.room_prices, function(room, index) {
             return _c("option", {
               domProps: {
-                value: room.id,
+                value: index,
                 textContent: _vm._s(room.name + "/" + room.price / 100 + "UAH")
               }
             })

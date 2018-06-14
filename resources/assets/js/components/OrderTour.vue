@@ -40,14 +40,14 @@
             <div class="form-group mt-3">
                 <label for="end-date">Choose food type: </label>
                 <select name="food_type" class="form-control" id="food-type" v-model="foodType">
-                    <option :value="food.id" v-for="food in tour.food_prices" v-text="`${food.name}/${food.price/100}UAH`"></option>
+                    <option :value="index" v-for="(food, index) in tour.food_prices" v-text="`${food.name}/${food.price/100}UAH`"></option>
                 </select>
             </div>
 
             <div class="form-group mt-3">
                 <label for="end-date">Choose food type: </label>
                 <select name="food_type" class="form-control" id="room-type" v-model="roomType">
-                    <option :value="room.id" v-for="room in tour.room_prices" v-text="`${room.name}/${room.price/100}UAH`"></option>
+                    <option :value="index" v-for="(room, index) in tour.room_prices" v-text="`${room.name}/${room.price/100}UAH`"></option>
                 </select>
             </div>
 
@@ -66,11 +66,11 @@
 
         data() {
             return {
-                endDate: moment().add('days', 1).format('YYYY-MM-DD'),
+                endDate: moment().add(1, 'days').format('YYYY-MM-DD'),
                 startDate: moment().format('YYYY-MM-DD'),
                 number: 1,
-                foodType: 1,
-                roomType: 1
+                foodType: 'standardFoodPrice',
+                roomType: 'standardRoomPrice'
             };
         },
 
@@ -92,27 +92,20 @@
                     alert('Incorrect date');
                     throw new Error('Incorrect Date.');
                 }
-                console.log(moment.duration(diffInSeconds).days() * Number.parseInt(this.number) * (this.tour.price + this.getFoodPrice(this.foodType) + this.getRoomPrice(this.roomType)));
+
                 return moment.duration(diffInSeconds).days() * Number.parseInt(this.number) * (this.tour.price + this.getFoodPrice(this.foodType) + this.getRoomPrice(this.roomType));
             },
 
-            getFoodPrice(id) {
-               let food = this.findById(id, this.tour.food_prices);
+            getFoodPrice() {
+               let food = this.tour.food_prices[this.foodType];
 
                return food.price;
             },
 
-            getRoomPrice(id) {
-                let room = this.findById(id, this.tour.room_prices);
+            getRoomPrice() {
+                let room = this.tour.room_prices[this.roomType];
 
                 return room.price;
-            },
-
-            findById(id, items) {
-                for (let key in items) {
-                    if (items[key].id == id)
-                        return items[key];
-                }
             },
 
             setOptions() {
@@ -129,8 +122,8 @@
                             end_date: this.endDate,
                             start_date: this.startDate,
                             number: this.number,
-                            foodId: this.foodType,
-                            roomId: this.roomId
+                            foodType: this.foodType,
+                            roomType: this.roomType
                         }
 
                         axios.post('/purchases', data)
